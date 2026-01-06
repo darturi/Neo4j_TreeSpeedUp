@@ -1,0 +1,58 @@
+,VANILLA,Integer (Range)
+Find all descendants,MATCH (descendant:TreeNode)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (root:TreeNode {integer_id: $rootID})
+,WHERE ancestor.integer_id = $rootID,MATCH (n:TreeNode)
+,RETURN descendant;,WHERE n.integer_id > $rootID
+,,AND n.integer_id <= root.upper_bound
+,,RETURN n;
+Find all Leaves,MATCH (leaf:TreeNode)-[:HAS_CHILD*1..]->(root:TreeNode {integer_id: $rootID}),MATCH (root:TreeNode {integer_id: $rootID})
+,WHERE NOT (leaf)<-[:HAS_CHILD]-(),MATCH (n:TreeNode)
+,RETURN leaf,WHERE n.integer_id > $rootID
+,,AND n.integer_id <= root.upper_bound
+,,AND n.subtree_size = 1
+,,RETURN n;
+Count Descendants,MATCH (descendant:TreeNode)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (root:TreeNode {integer_id: $rootID})
+,WHERE ancestor.integer_id = $rootID,MATCH (n:TreeNode)
+,RETURN count(descendant);,WHERE n.integer_id > $rootID
+,,AND n.integer_id <= root.upper_bound
+,,RETURN count(n);
+Count Leaves,MATCH (leaf:TreeNode)-[:HAS_CHILD*1..]->(root:TreeNode {integer_id: $rootID}),MATCH (root:TreeNode {integer_id: $rootID})
+,WHERE NOT (leaf)<-[:HAS_CHILD]-(),MATCH (n:TreeNode)
+,RETURN count(leaf),WHERE n.integer_id > $rootID
+,,AND n.integer_id <= root.upper_bound
+,,AND n.subtree_size = 1
+,,RETURN count(n);
+Check Same Subtree,MATCH (node1:TreeNode {integer_id: $id1}),MATCH (node1:TreeNode {integer_id: $id1})
+,MATCH (node2:TreeNode {integer_id: $id2}),MATCH (node2:TreeNode {integer_id: $id2})
+,MATCH (node1)-[:HAS_CHILD*0..]->(ancestor:TreeNode)<-[:HAS_CHILD*0..]-(node2),MATCH (ancestor:TreeNode)
+,RETURN COUNT(ancestor) > 0,WHERE ancestor.integer_id < node1.integer_id
+,AS sameSubtree,AND ancestor.integer_id < node2.integer_id
+,,AND node1.integer_id <= ancestor.upper_bound
+,,AND node2.integer_id <= ancestor.upper_bound
+,,RETURN COUNT(ancestor) > 0 AS sameSubtree
+Get LCA,MATCH (node1:TreeNode {integer_id: $id1}),MATCH (node1:TreeNode {integer_id: $id1})
+,MATCH (node2:TreeNode {integer_id: $id2}),MATCH (node2:TreeNode {integer_id: $id2})
+,MATCH path1 = (node1)-[:HAS_CHILD*0..]->(ancestor:TreeNode),CALL (node1** node2) {
+,MATCH path2 = (node2)-[:HAS_CHILD*0..]->(ancestor:TreeNode) ,MATCH (ancestor:TreeNode)
+,RETURN ancestor,WHERE ancestor.integer_id < node1.integer_id
+,ORDER BY length(path1) ASC,AND ancestor.integer_id < node2.integer_id
+,LIMIT 1,AND node1.integer_id <= ancestor.upper_bound
+,,AND node2.integer_id <= ancestor.upper_bound
+,,RETURN ancestor
+,,ORDER BY ancestor.integer_id DESC
+,,LIMIT 1
+,,}
+,,RETURN ancestor
+Get all ancestors,MATCH (node:TreeNode {integer_id: $nodeID}),MATCH (node:TreeNode {integer_id: $nodeID})
+,MATCH (node)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (ancestor:TreeNode) 
+,RETURN ancestor,WHERE ancestor.integer_id < node.integer_id 
+,,AND node.integer_id <= ancestor.upper_bound
+,,RETURN ancestor
+Check if one node is the ancestor of another,MATCH (node1:TreeNode {integer_id: $id1}),MATCH (node1:TreeNode {integer_id: $id1})
+,MATCH (node2:TreeNode {integer_id: $id2}),MATCH (node2:TreeNode {integer_id: $id2})
+,RETURN,RETURN
+,EXISTS((node1)-[:HAS_CHILD*1..]->(node2)),(node2.integer_id > node1.integer_id AND
+,OR,node2.integer_id <= node1.upper_bound)
+,EXISTS((node2)-[:HAS_CHILD*1..]->(node1)),OR
+,AS isAncestorRelationship,(node1.integer_id > node2.integer_id AND
+,,node1.integer_id <= node2.upper_bound)
+,,AS isAncestorRelationship

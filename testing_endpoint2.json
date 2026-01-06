@@ -1,0 +1,312 @@
+{
+  "100" : {
+    "Count Leaves" : {
+      "VANILLA" : {
+        "memory" : 552.0,
+        "dbHits" : 418.0,
+        "time" : 1.5918583
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 301.0,
+        "time" : 1.3354210999999998
+      }
+    },
+    "Check Same Subtree" : {
+      "VANILLA" : {
+        "memory" : 7360.4,
+        "dbHits" : 34.2,
+        "time" : 6.023916700000001
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 0.0,
+        "time" : 2.4904124000000003
+      }
+    },
+    "Find all descendants" : {
+      "VANILLA" : {
+        "memory" : 368.0,
+        "dbHits" : 894.0,
+        "time" : 1.427775
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 501.0,
+        "time" : 1.2644498999999998
+      }
+    },
+    "Count Descendants" : {
+      "VANILLA" : {
+        "memory" : 552.0,
+        "dbHits" : 399.0,
+        "time" : 1.2676664999999998
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 101.0,
+        "time" : 0.9588832999999998
+      }
+    },
+    "Find all Leaves" : {
+      "VANILLA" : {
+        "memory" : 368.0,
+        "dbHits" : 713.0,
+        "time" : 1.4044748999999999
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 537.0,
+        "time" : 1.3871083000000002
+      }
+    }
+  },
+  "1k" : {
+    "Count Leaves" : {
+      "VANILLA" : {
+        "memory" : 640.0,
+        "dbHits" : 7447.0,
+        "time" : 2.4552957
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 4951.0,
+        "time" : 2.2208248999999998
+      }
+    },
+    "Check Same Subtree" : {
+      "VANILLA" : {
+        "memory" : 7694.4,
+        "dbHits" : 6033.2,
+        "time" : 5.5715916
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 0.0,
+        "time" : 2.5997167
+      }
+    },
+    "Find all descendants" : {
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 11993.0,
+        "time" : 3.1671210000000003
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 8001.0,
+        "time" : 2.7680707
+      }
+    },
+    "Count Descendants" : {
+      "VANILLA" : {
+        "memory" : 640.0,
+        "dbHits" : 7012.0,
+        "time" : 2.0928375999999997
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 3001.0,
+        "time" : 2.0692372000000008
+      }
+    },
+    "Find all Leaves" : {
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 11032.0,
+        "time" : 3.4329251
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 8546.0,
+        "time" : 2.9018499
+      }
+    }
+  },
+  "10k" : {
+    "Count Leaves" : {
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 74303.0,
+        "time" : 8.638475199999998
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 44805.0,
+        "time" : 5.9444083
+      }
+    },
+    "Check Same Subtree" : {
+      "VANILLA" : {
+        "memory" : 28062.4,
+        "dbHits" : 60045.4,
+        "time" : 10.485783200000002
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 0.0,
+        "time" : 2.8775001999999996
+      }
+    },
+    "Find all descendants" : {
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 120011.0,
+        "time" : 23.932720999999997
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 80001.0,
+        "time" : 21.587470899999996
+      }
+    },
+    "Count Descendants" : {
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 70016.0,
+        "time" : 6.660487399999999
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 30001.0,
+        "time" : 5.290270899999999
+      }
+    },
+    "Find all Leaves" : {
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 110035.0,
+        "time" : 20.4790961
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 80535.0,
+        "time" : 17.948970699999997
+      }
+    }
+  },
+  "100k" : {
+    "Count Leaves" : {
+      "VANILLA" : {
+        "memory" : 640.0,
+        "dbHits" : 782877.0,
+        "time" : 42.25587499999999
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 483213.0,
+        "time" : 31.2682207
+      }
+    },
+    "Check Same Subtree" : {
+      "VANILLA" : {
+        "memory" : 25876.4,
+        "dbHits" : 600035.6,
+        "time" : 36.924233400000006
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 0.0,
+        "time" : 2.7847666
+      }
+    },
+    "Find all descendants" : {
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 1200191.0,
+        "time" : 193.9798542
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 800001.0,
+        "time" : 176.0571501
+      }
+    },
+    "Count Descendants" : {
+      "VANILLA" : {
+        "memory" : 640.0,
+        "dbHits" : 700192.0,
+        "time" : 33.2667541
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 300001.0,
+        "time" : 17.962387399999997
+      }
+    },
+    "Find all Leaves" : {
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 1239631.0,
+        "time" : 186.8256417
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 939963.0,
+        "time" : 183.3003081
+      }
+    }
+  },
+  "10" : {
+    "Count Leaves" : {
+      "VANILLA" : {
+        "memory" : 504.0,
+        "dbHits" : 69.0,
+        "time" : 1.3394082000000003
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 51.0,
+        "time" : 1.1946959
+      }
+    },
+    "Check Same Subtree" : {
+      "VANILLA" : {
+        "memory" : 5146.4,
+        "dbHits" : 77.0,
+        "time" : 3.9419084
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 0.0,
+        "time" : 2.2120416
+      }
+    },
+    "Find all descendants" : {
+      "VANILLA" : {
+        "memory" : 336.0,
+        "dbHits" : 113.0,
+        "time" : 1.476475
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 81.0,
+        "time" : 0.8941372999999999
+      }
+    },
+    "Count Descendants" : {
+      "VANILLA" : {
+        "memory" : 504.0,
+        "dbHits" : 68.0,
+        "time" : 1.3558416
+      },
+      "String" : {
+        "memory" : 480.0,
+        "dbHits" : 31.0,
+        "time" : 1.1988833
+      }
+    },
+    "Find all Leaves" : {
+      "VANILLA" : {
+        "memory" : 336.0,
+        "dbHits" : 94.0,
+        "time" : 1.3194751
+      },
+      "String" : {
+        "memory" : 312.0,
+        "dbHits" : 76.0,
+        "time" : 1.2105542
+      }
+    }
+  }
+}

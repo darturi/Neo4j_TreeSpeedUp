@@ -1,0 +1,492 @@
+{
+  "100" : {
+    "Count Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 5480.0,
+        "dbHits" : 710.0,
+        "time" : 3.8406794000000004
+      },
+      "VANILLA" : {
+        "memory" : 552.0,
+        "dbHits" : 705.0,
+        "time" : 3.2308624999999997
+      }
+    },
+    "Check Same Subtree" : {
+      "Integer (Range)" : {
+        "memory" : 6419.2,
+        "dbHits" : 644.0,
+        "time" : 9.2532125
+      },
+      "VANILLA" : {
+        "memory" : 7490.8,
+        "dbHits" : 633.0,
+        "time" : 10.662962399999998
+      }
+    },
+    "Find all descendants" : {
+      "Integer (Range)" : {
+        "memory" : 7912.0,
+        "dbHits" : 1198.0,
+        "time" : 4.0348085
+      },
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 1391.0,
+        "time" : 3.3125666000000002
+      }
+    },
+    "Count Descendants" : {
+      "Integer (Range)" : {
+        "memory" : 8112.0,
+        "dbHits" : 604.0,
+        "time" : 4.0305125
+      },
+      "VANILLA" : {
+        "memory" : 552.0,
+        "dbHits" : 698.0,
+        "time" : 3.4400709
+      }
+    },
+    "Find all Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 5312.0,
+        "dbHits" : 1028.0,
+        "time" : 3.6207874
+      },
+      "VANILLA" : {
+        "memory" : 384.0,
+        "dbHits" : 1076.0,
+        "time" : 3.368021
+      }
+    },
+    "Get LCA" : {
+      "Integer (Range)" : {
+        "memory" : 55392.0,
+        "dbHits" : 961.6,
+        "time" : 8.7374207
+      },
+      "VANILLA" : {
+        "memory" : 1763.2,
+        "dbHits" : 621.2,
+        "time" : 8.3275586
+      }
+    },
+    "Check if one node is the ancestor of another" : {
+      "Integer (Range)" : {
+        "memory" : 2432.0,
+        "dbHits" : 606.0,
+        "time" : 7.170950100000001
+      },
+      "VANILLA" : {
+        "memory" : 12160.0,
+        "dbHits" : 622.0,
+        "time" : 8.267254
+      }
+    },
+    "Get all ancestors" : {
+      "Integer (Range)" : {
+        "memory" : 10712.0,
+        "dbHits" : 726.5,
+        "time" : 5.6408667999999995
+      },
+      "VANILLA" : {
+        "memory" : 379.2,
+        "dbHits" : 351.5,
+        "time" : 7.4733751
+      }
+    }
+  },
+  "1k" : {
+    "Count Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 37512.0,
+        "dbHits" : 6998.0,
+        "time" : 4.9809292
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 6999.0,
+        "time" : 4.3678876
+      }
+    },
+    "Check Same Subtree" : {
+      "Integer (Range)" : {
+        "memory" : 20750.4,
+        "dbHits" : 6044.0,
+        "time" : 9.187025
+      },
+      "VANILLA" : {
+        "memory" : 11280.4,
+        "dbHits" : 6048.8,
+        "time" : 9.6639582
+      }
+    },
+    "Find all descendants" : {
+      "Integer (Range)" : {
+        "memory" : 65480.0,
+        "dbHits" : 11998.0,
+        "time" : 5.3350165
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 13991.0,
+        "time" : 5.3240625
+      }
+    },
+    "Count Descendants" : {
+      "Integer (Range)" : {
+        "memory" : 65680.0,
+        "dbHits" : 6004.0,
+        "time" : 4.2785249
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 7012.0,
+        "time" : 4.564629
+      }
+    },
+    "Find all Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 37344.0,
+        "dbHits" : 9980.0,
+        "time" : 4.7615751
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 10472.0,
+        "time" : 4.712145700000001
+      }
+    },
+    "Get LCA" : {
+      "Integer (Range)" : {
+        "memory" : 55392.0,
+        "dbHits" : 9565.0,
+        "time" : 9.9993418
+      },
+      "VANILLA" : {
+        "memory" : 1981.6,
+        "dbHits" : 6029.8,
+        "time" : 8.256616599999997
+      }
+    },
+    "Check if one node is the ancestor of another" : {
+      "Integer (Range)" : {
+        "memory" : 9600.0,
+        "dbHits" : 6006.0,
+        "time" : 8.000104199999999
+      },
+      "VANILLA" : {
+        "memory" : 76672.0,
+        "dbHits" : 6034.6,
+        "time" : 8.2973919
+      }
+    },
+    "Get all ancestors" : {
+      "Integer (Range)" : {
+        "memory" : 93480.0,
+        "dbHits" : 7038.5,
+        "time" : 6.2772374
+      },
+      "VANILLA" : {
+        "memory" : 417.6,
+        "dbHits" : 3087.8,
+        "time" : 5.4093416
+      }
+    }
+  },
+  "10k" : {
+    "Count Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 67200.0,
+        "dbHits" : 70072.0,
+        "time" : 24.4006417
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 70075.0,
+        "time" : 18.659450200000002
+      }
+    },
+    "Check Same Subtree" : {
+      "Integer (Range)" : {
+        "memory" : 20745.6,
+        "dbHits" : 60044.0,
+        "time" : 26.334600000000002
+      },
+      "VANILLA" : {
+        "memory" : 36550.0,
+        "dbHits" : 60071.8,
+        "time" : 20.0059626
+      }
+    },
+    "Find all descendants" : {
+      "Integer (Range)" : {
+        "memory" : 67000.0,
+        "dbHits" : 119998.0,
+        "time" : 53.61437930000001
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 140009.0,
+        "time" : 29.944599999999998
+      }
+    },
+    "Count Descendants" : {
+      "Integer (Range)" : {
+        "memory" : 67200.0,
+        "dbHits" : 60004.0,
+        "time" : 13.191266500000001
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 70016.0,
+        "time" : 8.724833299999998
+      }
+    },
+    "Find all Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 67032.0,
+        "dbHits" : 100276.0,
+        "time" : 21.4874584
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 105315.0,
+        "time" : 19.127649999999996
+      }
+    },
+    "Get LCA" : {
+      "Integer (Range)" : {
+        "memory" : 55392.0,
+        "dbHits" : 96444.8,
+        "time" : 22.438871
+      },
+      "VANILLA" : {
+        "memory" : 2484.0,
+        "dbHits" : 71021.7,
+        "time" : 17.7839959
+      }
+    },
+    "Check if one node is the ancestor of another" : {
+      "Integer (Range)" : {
+        "memory" : 9600.0,
+        "dbHits" : 60006.0,
+        "time" : 14.0535666
+      },
+      "VANILLA" : {
+        "memory" : 76672.0,
+        "dbHits" : 60046.0,
+        "time" : 17.2140085
+      }
+    },
+    "Get all ancestors" : {
+      "Integer (Range)" : {
+        "memory" : 95672.0,
+        "dbHits" : 70056.5,
+        "time" : 14.532358400000001
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 30123.0,
+        "time" : 9.5831916
+      }
+    }
+  },
+  "100k" : {
+    "Count Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 67200.0,
+        "dbHits" : 700454.0,
+        "time" : 44.3662499
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 700547.0,
+        "time" : 45.6382999
+      }
+    },
+    "Check Same Subtree" : {
+      "Integer (Range)" : {
+        "memory" : 20755.2,
+        "dbHits" : 600044.0,
+        "time" : 31.3436374
+      },
+      "VANILLA" : {
+        "memory" : 42625.2,
+        "dbHits" : 600085.4,
+        "time" : 32.85615
+      }
+    },
+    "Find all descendants" : {
+      "Integer (Range)" : {
+        "memory" : 67000.0,
+        "dbHits" : 1199998.0,
+        "time" : 217.4891667
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 1400189.0,
+        "time" : 209.5638333
+      }
+    },
+    "Count Descendants" : {
+      "Integer (Range)" : {
+        "memory" : 67200.0,
+        "dbHits" : 600004.0,
+        "time" : 41.8156166
+      },
+      "VANILLA" : {
+        "memory" : 672.0,
+        "dbHits" : 700192.0,
+        "time" : 39.9329789
+      }
+    },
+    "Find all Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 67032.0,
+        "dbHits" : 1001804.0,
+        "time" : 127.1250041
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 1052124.0,
+        "time" : 123.2960166
+      }
+    },
+    "Get LCA" : {
+      "Integer (Range)" : {
+        "memory" : 55392.0,
+        "dbHits" : 956497.8,
+        "time" : 52.558183199999995
+      },
+      "VANILLA" : {
+        "memory" : 2584.8,
+        "dbHits" : 632953.7,
+        "time" : 43.581004199999995
+      }
+    },
+    "Check if one node is the ancestor of another" : {
+      "Integer (Range)" : {
+        "memory" : 9600.0,
+        "dbHits" : 600006.0,
+        "time" : 28.302358299999998
+      },
+      "VANILLA" : {
+        "memory" : 76672.0,
+        "dbHits" : 600059.4,
+        "time" : 29.887741700000003
+      }
+    },
+    "Get all ancestors" : {
+      "Integer (Range)" : {
+        "memory" : 95672.0,
+        "dbHits" : 700074.5,
+        "time" : 42.8460624
+      },
+      "VANILLA" : {
+        "memory" : 432.0,
+        "dbHits" : 300149.4,
+        "time" : 16.9951835
+      }
+    }
+  },
+  "10" : {
+    "Count Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 2600.0,
+        "dbHits" : 82.0,
+        "time" : 3.1387167000000002
+      },
+      "VANILLA" : {
+        "memory" : 504.0,
+        "dbHits" : 69.0,
+        "time" : 3.2561625
+      }
+    },
+    "Check Same Subtree" : {
+      "Integer (Range)" : {
+        "memory" : 6129.6,
+        "dbHits" : 105.0,
+        "time" : 7.6507666
+      },
+      "VANILLA" : {
+        "memory" : 5105.6,
+        "dbHits" : 76.6,
+        "time" : 8.6068459
+      }
+    },
+    "Find all descendants" : {
+      "Integer (Range)" : {
+        "memory" : 2592.0,
+        "dbHits" : 118.0,
+        "time" : 2.9616958
+      },
+      "VANILLA" : {
+        "memory" : 336.0,
+        "dbHits" : 131.0,
+        "time" : 2.2345789
+      }
+    },
+    "Count Descendants" : {
+      "Integer (Range)" : {
+        "memory" : 2760.0,
+        "dbHits" : 64.0,
+        "time" : 3.1380583999999994
+      },
+      "VANILLA" : {
+        "memory" : 504.0,
+        "dbHits" : 68.0,
+        "time" : 3.1588082999999996
+      }
+    },
+    "Find all Leaves" : {
+      "Integer (Range)" : {
+        "memory" : 2432.0,
+        "dbHits" : 112.0,
+        "time" : 3.4128043
+      },
+      "VANILLA" : {
+        "memory" : 336.0,
+        "dbHits" : 104.0,
+        "time" : 2.8993875000000005
+      }
+    },
+    "Get LCA" : {
+      "Integer (Range)" : {
+        "memory" : 8800.0,
+        "dbHits" : 104.2,
+        "time" : 9.294737399999999
+      },
+      "VANILLA" : {
+        "memory" : 8375.2,
+        "dbHits" : 89.0,
+        "time" : 7.8436249999999985
+      }
+    },
+    "Check if one node is the ancestor of another" : {
+      "Integer (Range)" : {
+        "memory" : 2376.0,
+        "dbHits" : 64.4,
+        "time" : 5.862970800000001
+      },
+      "VANILLA" : {
+        "memory" : 12158.4,
+        "dbHits" : 70.2,
+        "time" : 6.733995899999999
+      }
+    },
+    "Get all ancestors" : {
+      "Integer (Range)" : {
+        "memory" : 2592.0,
+        "dbHits" : 84.0,
+        "time" : 2.9483041
+      },
+      "VANILLA" : {
+        "memory" : 336.0,
+        "dbHits" : 48.5,
+        "time" : 3.2706289999999996
+      }
+    }
+  }
+}

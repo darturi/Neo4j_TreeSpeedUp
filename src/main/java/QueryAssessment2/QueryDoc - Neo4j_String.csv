@@ -1,0 +1,42 @@
+,VANILLA,String
+Find all descendants,MATCH (descendant:TreeNode)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (n:TreeNode)
+,WHERE ancestor.string_id = $rootID,WHERE n.string_id STARTS WITH $rootID
+,RETURN descendant;,RETURN n;
+Find all Leaves,MATCH (leaf:TreeNode)-[:HAS_CHILD*1..]->(root:TreeNode {string_id: $rootID}),MATCH (n:TreeNode)
+,WHERE NOT (leaf)<-[:HAS_CHILD]-(),WHERE n.string_id STARTS WITH $rootID
+,RETURN leaf,AND n.height = 0
+,,RETURN n;
+Count Descendants,MATCH (descendant:TreeNode)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (n:TreeNode)
+,WHERE ancestor.string_id = $rootID,WHERE n.string_id STARTS WITH $rootID
+,RETURN count(descendant);,RETURN count(n);
+Count Leaves,MATCH (leaf:TreeNode)-[:HAS_CHILD*1..]->(root:TreeNode {string_id: $rootID}),MATCH (n:TreeNode)
+,WHERE NOT (leaf)<-[:HAS_CHILD]-(),WHERE n.string_id STARTS WITH $rootID
+,RETURN count(leaf),AND n.height = 0
+,,RETURN count(n);
+Check Same Subtree,MATCH (node1:TreeNode {string_id: $id1}),RETURN split($id1** '.')[0] = split($id2** '.')[0] AS same_subtree
+,MATCH (node2:TreeNode {string_id: $id2}),
+,MATCH (node1)-[:HAS_CHILD*0..]->(ancestor:TreeNode)<-[:HAS_CHILD*0..]-(node2),
+,RETURN COUNT(ancestor) > 0,
+,AS sameSubtree,
+Get LCA,MATCH (node1:TreeNode {string_id: $id1}),"WITH $id1 AS id1** $id2 AS id2"
+,MATCH (node2:TreeNode {string_id: $id2}),WITH split(id1** '.') AS parts1** split(id2** '.') AS parts2
+,MATCH path1 = (node1)-[:HAS_CHILD*0..]->(ancestor:TreeNode),WITH parts1** parts2**
+,MATCH path2 = (node2)-[:HAS_CHILD*0..]->(ancestor:TreeNode),[i IN range(0** size(parts1) - 1)
+,RETURN ancestor,WHERE i < size(parts2) AND parts1[i] = parts2[i]] AS matching
+,ORDER BY length(path1) ASC,WITH parts1[0..size(matching)] AS lca_parts
+,LIMIT 1,WITH reduce(s = lca_parts[0]** i IN range(1** size(lca_parts) - 1) |
+,,s + '.' + lca_parts[i]) AS lca_id
+,,MATCH (lca:TreeNode {string_id: lca_id})
+,,RETURN lca
+Get all ancestors,MATCH (node:TreeNode {string_id: $nodeID}),MATCH (target:TreeNode {string_id: $nodeID})
+,MATCH (node)-[:HAS_CHILD*1..]->(ancestor:TreeNode),MATCH (ancestor:TreeNode)
+,RETURN ancestor,WHERE ancestor.string_id < target.string_id
+,,AND target.string_id STARTS WITH ancestor.string_id + '.'
+,,RETURN ancestor
+Check if one node is the ancestor of another,MATCH (node1:TreeNode {string_id: $id1}),RETURN
+,MATCH (node2:TreeNode {string_id: $id2}),($id1 CONTAINS $id2) OR ($id2 CONTAINS $id1) AS isAncestorRelationship;
+,RETURN,
+,EXISTS((node1)-[:HAS_CHILD*1..]->(node2)),
+,OR,
+,EXISTS((node2)-[:HAS_CHILD*1..]->(node1)),
+,AS isAncestorRelationship,
