@@ -138,7 +138,7 @@ public class QueryAssessment {
         return 0;
     }
 
-    private HashMap<String, Double> assess_single_query(String query, HashMap<String, String> query_params, Session session){
+    private HashMap<String, Double> assess_single_query(String query, HashMap<String, String> query_params, Session session, boolean fullSuite){
         // Map keys into the right place
         String processed_query = query;
         for (Map.Entry<String, String> entry : query_params.entrySet())
@@ -146,7 +146,11 @@ public class QueryAssessment {
 
         HashMap<String, Double> metrics = new HashMap<>();
 
-        String profileQuery = "PROFILE ".concat(processed_query);
+        String profileQuery;
+        if (fullSuite)
+            profileQuery = "PROFILE ".concat(processed_query);
+        else
+            profileQuery = processed_query;
 
         // System.out.println("HELLO IMPORTANT");
         // System.out.println(processed_query);
@@ -156,35 +160,38 @@ public class QueryAssessment {
 
         Result result = session.run(profileQuery);
 
+        long endTime = System.nanoTime();
+
         // Consume all results
         while (result.hasNext()) {
                 result.next();
             }
 
-        long endTime = System.nanoTime();
         double timeMs = (endTime - startTime) / 1_000_000.0; // Convert to milliseconds
         metrics.put("time", timeMs);
 
-        // Extract profile information
-        ResultSummary summary = result.consume();
-        if (summary.hasPlan() && summary.hasProfile()) {
-            double dbHits = (double) extractDbHits(summary.profile());
-            metrics.put("dbHits", dbHits);
+        if (fullSuite) {
+            // Extract profile information
+            ResultSummary summary = result.consume();
+            if (summary.hasPlan() && summary.hasProfile()) {
+                double dbHits = (double) extractDbHits(summary.profile());
+                metrics.put("dbHits", dbHits);
 
-            // Try to get GlobalMemory first (total for entire query)
-            Object globalMem = summary.profile().arguments().get("GlobalMemory");
-            double memory;
-            if (globalMem != null) {
-                memory = (double) parseMemoryValue(globalMem);
+                // Try to get GlobalMemory first (total for entire query)
+                Object globalMem = summary.profile().arguments().get("GlobalMemory");
+                double memory;
+                if (globalMem != null) {
+                    memory = (double) parseMemoryValue(globalMem);
+                } else {
+                    // Fallback: sum memory from all operators
+                    memory = (double) extractMemory(summary.profile());
+                }
+                metrics.put("memory", memory);
             } else {
-                // Fallback: sum memory from all operators
-                memory = (double) extractMemory(summary.profile());
+                // If profile info not available, set to 0
+                metrics.put("dbHits", 0.0);
+                metrics.put("memory", 0.0);
             }
-            metrics.put("memory", memory);
-        } else {
-            // If profile info not available, set to 0
-            metrics.put("dbHits", 0.0);
-            metrics.put("memory", 0.0);
         }
 
 
@@ -194,14 +201,17 @@ public class QueryAssessment {
     private HashMap<String, Double> assess_query_averaged(
             String query,
             ArrayList<HashMap<String, String>> paramsList,
-            Session session
+            Session session,
+            boolean fullSuite
     ) {
         if (paramsList == null || paramsList.isEmpty()) {
             System.err.println("Error: paramsList is empty or null");
             HashMap<String, Double> errorMetrics = new HashMap<>();
             errorMetrics.put("time", -1.0);
-            errorMetrics.put("dbHits", -1.0);
-            errorMetrics.put("memory", -1.0);
+            if (fullSuite) {
+                errorMetrics.put("dbHits", -1.0);
+                errorMetrics.put("memory", -1.0);
+            }
             return errorMetrics;
         }
 
@@ -212,13 +222,15 @@ public class QueryAssessment {
 
         // Run query for each parameter set
         for (HashMap<String, String> params : paramsList) {
-            HashMap<String, Double> metrics = assess_single_query(query, params, session);
+            HashMap<String, Double> metrics = assess_single_query(query, params, session, fullSuite);
 
             // Only include results that didn't error (no -1 values)
             if (metrics.get("time") >= 0) {
                 totalTime += metrics.get("time");
-                totalDbHits += metrics.get("dbHits");
-                totalMemory += metrics.get("memory");
+                if (fullSuite) {
+                    totalDbHits += metrics.get("dbHits");
+                    totalMemory += metrics.get("memory");
+                }
                 validRuns++;
             } else {
                 System.err.println("Warning: Skipping failed query run");
@@ -229,14 +241,18 @@ public class QueryAssessment {
         HashMap<String, Double> averagedMetrics = new HashMap<>();
         if (validRuns > 0) {
             averagedMetrics.put("time", totalTime / validRuns);
-            averagedMetrics.put("dbHits", totalDbHits / validRuns);
-            averagedMetrics.put("memory", totalMemory / validRuns);
+            if (fullSuite) {
+                averagedMetrics.put("dbHits", totalDbHits / validRuns);
+                averagedMetrics.put("memory", totalMemory / validRuns);
+            }
         } else {
             // All runs failed
             System.err.println("Error: All query runs failed");
             averagedMetrics.put("time", -1.0);
-            averagedMetrics.put("dbHits", -1.0);
-            averagedMetrics.put("memory", -1.0);
+            if (fullSuite) {
+                averagedMetrics.put("dbHits", -1.0);
+                averagedMetrics.put("memory", -1.0);
+            }
         }
 
         return averagedMetrics;
@@ -270,7 +286,8 @@ public class QueryAssessment {
             int runCount,
             int heat,
             String db_prefix,
-            String qtype
+            String qtype,
+            boolean fullSuite
     ){
 
         HashMap<String, HashMap<String, HashMap<String, Double>>> final_results = new HashMap<>();
@@ -289,14 +306,15 @@ public class QueryAssessment {
                 for (Map.Entry<String, String> innerEntry : innerMap.entrySet()){
                     // Warm up
                     ArrayList<HashMap<String, String>> heat_mapping_list = generate_integer_range_mapping_list(heat, intSize, qtype, session);
-                    assess_query_averaged(innerEntry.getValue(), heat_mapping_list, session);
+                    assess_query_averaged(innerEntry.getValue(), heat_mapping_list, session, fullSuite);
 
                     // Execute
                     ArrayList<HashMap<String, String>> run_mapping_list = generate_integer_range_mapping_list(runCount, intSize, qtype, session);
                     HashMap<String, Double> r = assess_query_averaged(
                             innerEntry.getValue(),
                             run_mapping_list,
-                            session
+                            session,
+                            fullSuite
                     );
 
                     // RECORD / STORE RESULTS
@@ -375,7 +393,8 @@ public class QueryAssessment {
                     10,
                     5,
                     "integer-range",
-                    "int"
+                    "int",
+                    true
             );
 
             FINAL_RESULT.put(entry.getValue(), x);

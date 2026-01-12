@@ -42,7 +42,7 @@ public class QueryAssessmentEndpoints {
         }
     }
 
-    public void assess_full_suite(String save_file){
+    public void assess_full_suite(String save_file, boolean fullSuite, int runCount){
         HashMap<String, HashMap<String, HashMap<String, HashMap<String, Double>>>> FINAL_RESULT = new HashMap<>();
 
         for (Map.Entry<Integer, String> entry : size_map.entrySet()) {
@@ -58,10 +58,11 @@ public class QueryAssessmentEndpoints {
             System.out.println("Starting size " + entry.getValue());
             HashMap<String, HashMap<String, HashMap<String, Double>>> x = qa_instance.handle_one_size(
                     entry.getKey(),
-                    10,
+                    runCount,
                     5,
                     this.db_prefix,
-                    this.qType
+                    this.qType,
+                    fullSuite
             );
 
             FINAL_RESULT.put(entry.getValue(), x);
@@ -82,10 +83,38 @@ public class QueryAssessmentEndpoints {
         }
     }
 
+    public static void runTestBattery(String password, String baseTypeName, String savePostFix, int runCount){
+        String ir_save_prefix = "neo4j_IR_results_";
+        String s_save_prefix = "neo4j_S_results_";
+
+        QueryAssessmentEndpoints qae = new QueryAssessmentEndpoints(password, "string");
+        qae.assess_full_suite(s_save_prefix + baseTypeName + "_full" + savePostFix + ".json", true, runCount);
+
+        // String - Lean
+        qae = new QueryAssessmentEndpoints(password, "string");
+        qae.assess_full_suite(s_save_prefix + baseTypeName + "_lean" + savePostFix + ".json", false, runCount);
+
+        // IntegerRange - Full Suite
+        qae = new QueryAssessmentEndpoints(password, "int");
+        qae.assess_full_suite(ir_save_prefix + baseTypeName + "_full" + savePostFix + ".json", true, runCount);
+
+        // IntegerRange - Lean
+        qae = new QueryAssessmentEndpoints(password, "int");
+        qae.assess_full_suite(ir_save_prefix + baseTypeName + "_lean" + savePostFix + ".json", false, runCount);
+    }
+
     public static void main(String[] args) {
         String truebase_password = "giggleparabola"; // TrueBase
         String ultratall_password = "gigglediamond"; // UltraTall
         String ultrawide_password = "gigglequadrilateral"; // UltraWide
+
+        String testNum = "6";
+        int runCountChoice = 200;
+
+        //runTestBattery(truebase_password, "TrueBase", testNum, runCountChoice);
+        // runTestBattery(ultratall_password, "UltraTall", testNum, runCountChoice);
+        runTestBattery(ultrawide_password, "UltraWide", testNum, runCountChoice);
+
 
         //QueryAssessmentEndpoints qae = new QueryAssessmentEndpoints(truebase_password, "string");
         //qae.assess_full_suite("string_assessment_truebase2.json");
@@ -93,8 +122,8 @@ public class QueryAssessmentEndpoints {
         //QueryAssessmentEndpoints qae = new QueryAssessmentEndpoints(ultratall_password, "string");
         //qae.assess_full_suite("string_assessment_ultratall2.json");
 
-        QueryAssessmentEndpoints qae = new QueryAssessmentEndpoints(ultrawide_password, "string");
-        qae.assess_full_suite("string_assessment_ultrawide2.json");
+        // QueryAssessmentEndpoints qae = new QueryAssessmentEndpoints(ultrawide_password, "string");
+        // qae.assess_full_suite("string_assessment_ultrawide2.json");
 
         // qae = new QueryAssessmentEndpoints(truebase_password, "int");
         //qae.assess_full_suite("integer_range_assessment_truebase1.json");
